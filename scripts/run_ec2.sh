@@ -5,31 +5,38 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 cd "$PROJECT_ROOT"
 
-IMAGE_NAME="tsp-benchmark"
+IMAGE_NAME="tsp-solver"
 
 echo "=== 1. Atualizando repositório ==="
 git fetch --all
 git pull --ff-only
 
-echo "=== 2. Coletando informações do hardware ==="
-CPU_COUNT=$(nproc)
-RAM_GB=$(free -g | awk '/^Mem:/ {print $2}')
+echo "=== 2. Salvando informações do sistema ==="
+mkdir -p data/out
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+INFO_TXT="data/system_info_${TIMESTAMP}.txt"
 
-OUTPUT_CSV="${1:-data/results_${CPU_COUNT}vcpu_${RAM_GB}GB_${TIMESTAMP}.csv}"
+{
+    echo "=== SISTEMA ==="
+    uname -a
+    echo "=== CPU ==="
+    lscpu | grep -E "Model name|Architecture|CPU\(s\)|Thread|Core|Socket|MHz" || true
+    echo "=== MEMORIA ==="
+    free -h
+    echo "=== DISCO ==="
+    df -h /
+} > "$INFO_TXT"
 
-echo "Hardware: ${CPU_COUNT} vCPUs | ${RAM_GB} GB RAM"
-echo "Arquivo de saída: ${OUTPUT_CSV}"
+echo "Informações da máquina salvas em: ${INFO_TXT}"
 
 echo "=== 3. Construindo imagem Docker ==="
 docker build -t "$IMAGE_NAME" .
 
 echo "=== 4. Executando benchmark no container ==="
-mkdir -p data/out
-docker run --rm \
+MSYS_NO_PATHCONV=1 docker run --rm \
     -v "${PROJECT_ROOT}/data:/app/data" \
-    "$IMAGE_NAME" \
-    bash scripts/benchmark.sh "$OUTPUT_CSV"
+    "$IMAGE_NAME"
 
 echo "=== Concluído com sucesso! ==="
-echo "Resultados salvos em: ${OUTPUT_CSV}"
+echo "Ficha técnica: ${INFO_TXT}"
+echo "Resultados:    data/results.csv"
