@@ -20,7 +20,7 @@ int main() {
         "Simulated Annealing",
         "TOUR",
         path->dimension,
-        path->total_dist,
+        CalculatePathTotalDist(tsp, path),
         path->nodes_index
     );
 

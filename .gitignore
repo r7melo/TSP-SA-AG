@@ -1,12 +1,24 @@
+# Binários e objetos compilados
 *.exe
 *.out
 *.bin
 *.o
 *.obj
+main
+build/
+
+# Dados voláteis e resultados de benchmark
+#data/out/
+#data/results*.csv
+
+# Logs e arquivos temporários
 *.log
 *.tmp
-build/
+
+# IDEs e editores
 .vscode/
 .idea/
+
+# Arquivos de sistema operacional
 .DS_Store
 Thumbs.db

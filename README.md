@@ -1,3 +1,5 @@
+> Todos os comandos são para windows via cmd
+
 ## Instalar o Compilador
 
 ```
@@ -49,10 +51,16 @@ TOUR_SECTION
 EOF
 ```
 
-## Avaliacao experimental
+## Avaliacao experimental (via Docker)
 
 O script abaixo compila o projeto, executa todas as instancias `.tsp` em `data/in/`, grava os tours em `data/out/` e gera um CSV com tempo e custo em `data/results.csv`:
 
-```powershell
-.\scripts\benchmark.ps1
+1. Build da imagem
+```
+docker build -t tsp-benchmark .
+```
+
+2. Executar o benchmark completo
+```
+docker run --rm -v "%cd%\data:/app/data" tsp-benchmark
 ```

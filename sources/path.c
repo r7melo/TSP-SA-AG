@@ -9,10 +9,7 @@ PATH *ConstructPath(TSP *tsp) {
     CHECK_ALLOC(path);
 
     path->dimension = tsp->dimension;
-    path->total_dist = 0;
     path->nodes_index = GenerateRandomPath(path->dimension);
-
-    CalculatePathCost(tsp, path);
     
     return path;
 }
@@ -47,7 +44,9 @@ int DistanceBetweenNodes(Node a, Node b) {
     return (int)ceil(sqrt(dx * dx + dy * dy));
 }
 
-void CalculatePathCost(TSP *tsp, PATH *path) {
+int CalculatePathTotalDist(TSP *tsp, PATH *path) {
+    int total_dist = 0;
+
     for (size_t i = 0; i < path->dimension; i++)
     {
         int index_node_1 = path->nodes_index[i];
@@ -58,9 +57,11 @@ void CalculatePathCost(TSP *tsp, PATH *path) {
         else
             index_node_2 = path->nodes_index[0];
 
-        path->total_dist += DistanceBetweenNodes(
+        total_dist += DistanceBetweenNodes(
             tsp->nodes[index_node_1],
             tsp->nodes[index_node_2]
         );
     }
+
+    return total_dist;
 }

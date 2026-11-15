@@ -1,0 +1,5 @@
+.git
+.vscode
+*.exe
+data/out/*
+data/results.csv
