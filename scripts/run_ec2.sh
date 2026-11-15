@@ -33,7 +33,6 @@ docker build -t "$IMAGE_NAME" .
 
 echo "=== 4. Executando benchmark no container ==="
 MSYS_NO_PATHCONV=1 docker run --rm \
-    --user "$(id -u):$(id -g)" \
     -v "${PROJECT_ROOT}/data:/app/data" \
     "$IMAGE_NAME"
 
