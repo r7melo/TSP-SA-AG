@@ -80,7 +80,7 @@ docker run --rm -v "%cd%\data:/app/data" tsp-benchmark
     sftp -o StrictHostKeyChecking=no -i "<CAMINHO_DA_CHAVE.pem>" ec2-user@<IP_DA_INSTANCIA>
     ```
     ```
-    get TSP-SA-AG/data/results.txt data/
+    get TSP-SA-AG/data/results.csv data/
     get TSP-SA-AG/data/system_infos.txt data/
     bye
     ```
