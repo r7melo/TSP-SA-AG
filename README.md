@@ -64,3 +64,23 @@ docker build -t tsp-benchmark .
 ```
 docker run --rm -v "%cd%\data:/app/data" tsp-benchmark
 ```
+
+## Avaliacao experimental (via EC2)
+
+
+
+1. Conecte-se com a instancia:
+    ```
+    ssh -o StrictHostKeyChecking=no -i "<CAMINHO_DA_CHAVE.pem>" ec2-user@<IP_DA_INSTANCIA>
+    ```
+2. Configure o ambiente através do script `script/setup_ec2.txt`.
+3. Rode o script de execução de testes `script/run_ec2.sh`.
+4. Capture os dados via protocolo HTTP:
+    ```
+    sftp -o StrictHostKeyChecking=no -i "<CAMINHO_DA_CHAVE.pem>" ec2-user@<IP_DA_INSTANCIA>
+    ```
+    ```
+    get TSP-SA-AG/data/results.txt data/
+    get TSP-SA-AG/data/system_infos.txt data/
+    bye
+    ```
