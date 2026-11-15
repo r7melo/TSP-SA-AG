@@ -16,4 +16,3 @@ typedef struct {
 TSP* ConstructTSP();
 void ReadTSP(TSP *tsp, FILE *f);
 void DeconstructTSP(TSP* tsp);
-double TSPDistance(TSP *tsp, int a, int b);

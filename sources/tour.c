@@ -1,14 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "tour.h"
+#include "error.h"
 
 TOUR* ConstructTOUR(const char *name, const char *comment, const char *type, int dimension, int total_weight, int *tour_section) {
     
     // Alocando TOUR
     TOUR *tour = malloc(sizeof(TOUR));
+    CHECK_ALLOC(tour);
 
     // Alocando TOUR_SECTION
     tour->tour_section = malloc(sizeof(int) * dimension);
+    CHECK_ALLOC(tour->tour_section);
+
 
     // Definindo variáveis
     snprintf(tour->name, sizeof(tour->name), "%s", name);

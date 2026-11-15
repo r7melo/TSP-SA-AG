@@ -14,7 +14,7 @@ gcc main.c sources/*.c -Iheads -lm -o main.exe
 ## Execucao
 
 ```
-.\main.exe < data\tsp29.tsp > data\estimados\tsp29.tsp.tour
+.\main.exe < data\in\131.tsp > data\out\131.tsp.tour
 ```
 
 
@@ -51,7 +51,7 @@ EOF
 
 ## Avaliacao experimental
 
-O script abaixo compila o projeto, executa todas as instancias `.tsp` em `data/in/`, grava os tours em `data/out/` e gera um CSV com tempo e custo:
+O script abaixo compila o projeto, executa todas as instancias `.tsp` em `data/in/`, grava os tours em `data/out/` e gera um CSV com tempo e custo em `data/results.csv`:
 
 ```powershell
 .\scripts\benchmark.ps1

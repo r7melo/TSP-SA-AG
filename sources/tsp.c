@@ -3,9 +3,11 @@
 #include <string.h>
 #include <math.h>
 #include "tsp.h"
+#include "error.h"
 
 TSP* ConstructTSP() {
     TSP *tsp = malloc(sizeof(TSP));
+    CHECK_ALLOC(tsp);
     tsp->nodes = NULL;
     tsp->dimension = 0;
     return tsp;
@@ -26,7 +28,7 @@ void ReadTSP(TSP *tsp, FILE *f) {
             sscanf(linha, "%*[^:]: %d", &tsp->dimension);
 
             tsp->nodes = malloc(sizeof(Node) * tsp->dimension);
-            if (!tsp->nodes) exit(1);
+            CHECK_ALLOC(tsp->nodes);
         }
 
         else if (strstr(linha, "NODE_COORD_SECTION")) {
@@ -51,10 +53,4 @@ void ReadTSP(TSP *tsp, FILE *f) {
 void DeconstructTSP(TSP *tsp) {
     free(tsp->nodes);
     free(tsp);
-}
-
-double TSPDistance(TSP *tsp, int a, int b) {
-    double dx = tsp->nodes[a].x - tsp->nodes[b].x;
-    double dy = tsp->nodes[a].y - tsp->nodes[b].y;
-    return sqrt(dx*dx + dy*dy);
 }

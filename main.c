@@ -1,54 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "tsp.h"
 #include "tour.h"
-#include "delaunay.h"
-#include "triangles.h"
-#include "graph.h"
 #include "path.h"
-#include "optimizer.h"
-
-#define TWO_OPT_MAX_ITER 100
 
 int main() {
+    srand(time(NULL));
 
+    // LEITURA DO ARQUIVO
     TSP *tsp = ConstructTSP();
     ReadTSP(tsp, stdin);
 
-
-    // PROCESSAR DALEUNAY (Bawyer-Wotson)
-    // Entrada: TSP
-    // Saída: TRIANGLES
-    TRIANGLES *triangles = BuildDelaunay(tsp);
-
-    // CONSTRUIR GRAFO
-    // Entrada: TRIANGLES
-    // Saída: GRAPH
-    GRAPH *graph = ConstructGraph(triangles, tsp->dimension);
-
-
-    // PROCESSAR CAMINHO
-    // Entrada: TSP e GRAFO
-    // Saída: PATH
-    PATH *path = BuildTour(tsp, graph);
-
-    // OTIMIZAR ROTA
-    // Entrada: PATH
-    // Processa: rota otimizada
-    ApplyTwoOpt(path->nodes, path->count, tsp, TWO_OPT_MAX_ITER);
-
-    // Recalcula a distância total após a otimização
-    path->total_dist = TwoOptTotalDistance(path->nodes, path->count, tsp);
-
+    PATH *path = ConstructPath(tsp);   
 
     // MONTANDO O ARQUIVO
     TOUR *tour = ConstructTOUR(
         tsp->name,
-        "KNN + Delaunay",
+        "Simulated Annealing",
         "TOUR",
-        path->count,
-        (int)path->total_dist,
-        path->nodes
+        path->dimension,
+        path->total_dist,
+        path->nodes_index
     );
 
     // ESCREVENDO O ARQUIVO FINAL
@@ -56,8 +29,6 @@ int main() {
 
     // LIMPANDO ENTIDADES
     DeconstructTOUR(tour);
-    DeconstructPath(path);
-    DeconstructGraph(graph);
     DeconstructTSP(tsp);
 
     return 0;
