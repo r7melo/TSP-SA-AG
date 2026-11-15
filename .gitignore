@@ -6,6 +6,7 @@
 *.obj
 main
 build/
+data/system_info*.txt
 
 # Dados voláteis e resultados de benchmark
 data/out/
