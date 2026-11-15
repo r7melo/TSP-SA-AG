@@ -1,0 +1,103 @@
+numero,nome,gap,bound,tour,fonte
+131,xqf131,Optimal,564,564,Concorde
+237,xqg237,Optimal,1019,1019,Concorde
+343,pma343,Optimal,1368,1368,Concorde
+379,pka379,Optimal,1332,1332,Concorde
+380,bcl380,Optimal,1621,1621,Concorde
+395,pbl395,Optimal,1281,1281,Concorde
+411,pbk411,Optimal,1343,1343,Concorde
+423,pbn423,Optimal,1365,1365,Concorde
+436,pbm436,Optimal,1443,1443,Concorde
+662,xql662,Optimal,2513,2513,Concorde
+711,rbx711,Optimal,3115,3115,Concorde
+737,rbu737,Optimal,3314,3314,Concorde
+813,dkg813,Optimal,3199,3199,Concorde
+963,lim963,Optimal,2789,2789,Concorde
+984,pbd984,Optimal,2797,2797,Concorde
+1083,xit1083,Optimal,3558,3558,Concorde
+1376,dka1376,Optimal,4666,4666,Concorde
+1389,dca1389,Optimal,5085,5085,Concorde
+1436,dja1436,Optimal,5257,5257,Concorde
+1483,icw1483,Optimal,4416,4416,Concorde
+1488,fra1488,Optimal,4264,4264,Concorde
+1583,rbv1583,Optimal,5387,5387,Concorde
+1599,rby1599,Optimal,5533,5533,Concorde
+1615,fnb1615,Optimal,4956,4956,Concorde
+1785,djc1785,Optimal,6115,6115,Concorde
+1911,dcc1911,Optimal,6396,6396,Concorde
+1973,dkd1973,Optimal,6421,6421,Concorde
+2036,djb2036,Optimal,6197,6197,Concorde
+2086,dcb2086,Optimal,6600,6600,Concorde
+2144,bva2144,Optimal,6304,6304,Concorde
+2175,xqc2175,Optimal,6830,6830,Keld Helsgaun
+2217,bck2217,Optimal,6764,6764,Concorde
+2308,xpr2308,Optimal,7219,7219,LKH
+2323,ley2323,Optimal,8352,8352,LKH
+2382,dea2382,Optimal,8017,8017,LKH
+2481,rbw2481,Optimal,7724,7724,LKH
+2566,pds2566,Optimal,7643,7643,LKH
+2597,mlt2597,Optimal,8071,8071,LKH
+2762,bch2762,Optimal,8234,8234,LKH
+2802,irw2802,Optimal,8423,8423,Keld Helsgaun
+2854,lsm2854,Optimal,8014,8014,LKH
+2924,dbj2924,Optimal,10128,10128,LKH
+2993,xva2993,Optimal,8492,8492,LKH
+3056,pia3056,Optimal,8258,8258,Hung Dinh Nguyen
+3097,dke3097,Optimal,10539,10539,LKH
+3119,lsn3119,Optimal,9114,9114,LKH
+3140,lta3140,Optimal,9517,9517,LKH
+3256,fdp3256,Optimal,10008,10008,LKH
+3293,beg3293,Optimal,9772,9772,LKH
+3386,dhb3386,Optimal,11137,11137,LKH
+3649,fjs3649,Optimal,9272,9272,LKH
+3672,fjr3672,Optimal,9601,9601,LKH
+3694,dlb3694,Optimal,10959,10959,LKH
+3729,ltb3729,Optimal,11821,11821,LKH
+3891,xqe3891,Optimal,11995,11995,Hung Dinh Nguyen
+3937,xua3937,Optimal,11239,11239,LKH
+3938,dkc3938,Optimal,12503,12503,LKH
+3954,dkf3954,Optimal,12538,12538,LKH
+4355,bgb4355,Optimal,12723,12723,Hung Dinh Nguyen
+4396,bgd4396,Optimal,13009,13009,LKH
+4410,frv4410,Optimal,10711,10711,LKH
+4475,bgf4475,Optimal,13221,13221,LKH
+4966,xqd4966,Optimal,15316,15316,LKH
+5087,fqm5087,Optimal,13029,13029,LKH
+5557,fea5557,Optimal,15445,15445,LKH
+6880,xsc6880,Optimal,21535,21535,"Goldengorin, Jaeger, Molitor, Richter"
+7168,bnd7168,Optimal,21834,21834,LKH
+7454,lap7454,Optimal,19535,19535,Keld Helsgaun
+8197,ida8197,Optimal,22338,22338,Hung Dinh Nguyen
+9698,dga9698,Optimal,27724,27724,LKH
+10150,xmc10150,Optimal,28387,28387,Hung Dinh Nguyen
+13584,xvb13584,Optimal,37083,37083,"C. Dong, G. Jaeger, P. Molitor, D. Richter"
+14233,xrb14233,0.026%,45450,45462,Keld Helsgaun
+16928,xia16928,0.023%,52838,52850,Hung Dinh Nguyen
+17845,pjh17845,0.019%,48083,48092,Keld Helsgaun
+19289,frh19289,0.013%,55791,55798,Keld Helsgaun
+19402,fnc19402,0.020%,59275,59287,"C. Dong, G. Jaeger, P. Molitor, D. Richter"
+21215,ido21215,0.028%,63501,63517,"C. Dong, G. Jaeger, P. Molitor, D. Richter"
+21553,fma21553,x.x%,,66527,Keld Helsgaun
+22777,lsb22777,x.x%,,60977,Keld Helsgaun
+24104,xrh24104,x.x%,,69294,Keld Helsgaun
+25234,bbz25234,x.x%,,69335,Keld Helsgaun
+28268,irx28268,x.x%,,72607,Keld Helsgaun
+28534,fyg28534,x.x%,,78562,"C. Dong, G. Jaeger, P. Molitor, D. Richter"
+28698,icx28698,x.x%,,78087,"Kazuma Honda, Yuichi Nagata, Isao Ono"
+28924,boa28924,x.x%,,79622,"C. Dong, G. Jaeger, P. Molitor, D. Richter"
+29514,ird29514,x.x%,,80353,Keld Helsgaun
+30440,pbh30440,x.x%,,88313,Keld Helsgaun
+32892,xib32892,x.x%,,96757,"C. Dong, G. Jaeger, P. Molitor, D. Richter"
+33203,fry33203,x.x%,,97240,Keld Helsgaun
+34656,bby34656,x.x%,,99159,"C. Dong, G. Jaeger, P. Molitor, D. Richter"
+38478,pba38478,x.x%,,108318,"C. Dong, G. Jaeger, P. Molitor, D. Richter"
+39603,ics39603,x.x%,,106819,Keld Helsgaun
+43748,rbz43748,x.x%,,125183,Keld Helsgaun
+47608,fht47608,x.x%,,125104,Yuichi Nagata
+52057,fna52057,x.x%,,147789,"C. Dong, G. Jaeger, P. Molitor, D. Richter"
+56769,bna56769,x.x%,,158078,Yuichi Nagata
+59296,dan59296,x.x%,,165371,Xavier Clarist
+104815,sra104815,x.x%,,251342,Xavier Clarist
+238025,ara238025,x.x%,,578761,Xavier Clarist
+498378,lra498378,x.x%,,2168039,Xavier Clarist
+744710,lrb744710,x.x%,,1611232,Xavier Clarist
