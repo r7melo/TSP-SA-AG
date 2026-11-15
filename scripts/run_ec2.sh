@@ -10,6 +10,7 @@ IMAGE_NAME="tsp-benchmark"
 echo "=== 1. Atualizando repositório ==="
 git fetch --all
 git reset --hard origin/main
+chmod +x scripts/run_ec2.sh
 
 echo "=== 2. Salvando informações do sistema ==="
 mkdir -p data/out
