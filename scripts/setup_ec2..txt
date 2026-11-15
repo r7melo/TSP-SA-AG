@@ -1,0 +1,61 @@
+========================================================================
+GUIA DE CONFIGURAÇÃO INICIAL - AWS EC2 (AMAZON LINUX 2023)
+Projeto: TSP-SA-AG (https://github.com/r7melo/TSP-SA-AG)
+IP da Instância: 18.220.23.56
+========================================================================
+
+1. CONECTAR VIA SSH (NO TERMINAL DO WINDOWS)
+------------------------------------------------------------------------
+Substitua "caminho/para/sua-chave.pem" pelo caminho real da sua chave:
+
+ssh -i "caminho/para/sua-chave.pem" ec2-user@18.220.23.56
+
+
+2. CONFIGURAR SWAP (2GB), GIT, DOCKER E ZIP (RODAR UMA ÚNICA VEZ NA EC2)
+------------------------------------------------------------------------
+# Cria 2GB de memória Swap para evitar estouro de RAM nas instâncias grandes
+sudo dd if=/dev/zero of=/swapfile bs=128M count=16
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+echo '/swapfile swap swap defaults 0 0' | sudo tee -a /etc/fstab
+
+# Atualiza o sistema e instala Git, Docker e Zip
+sudo dnf update -y
+sudo dnf install -y git docker zip
+sudo systemctl enable --now docker
+sudo usermod -aG docker ec2-user
+newgrp docker
+
+
+3. CLONAR O REPOSITÓRIO E EXECUTAR O BENCHMARK
+------------------------------------------------------------------------
+git clone https://github.com/r7melo/TSP-SA-AG.git
+cd TSP-SA-AG
+bash scripts/run_ec2.sh
+
+
+4. EXECUÇÕES FUTURAS (APÓS DAR GIT PUSH NO WINDOWS)
+------------------------------------------------------------------------
+Sempre que atualizar o código no PC local e subir para o GitHub, conecte
+na EC2 e rode apenas:
+
+cd ~/TSP-SA-AG
+bash scripts/run_ec2.sh
+
+
+5. COMANDOS ÚTEIS PARA VISUALIZAR E BAIXAR OS RESULTADOS
+------------------------------------------------------------------------
+# Ver especificações da máquina coletadas:
+cat data/system_infos.txt
+
+# Ver tabela de resultados formatada no terminal:
+column -s, -t data/results.txt
+
+# Baixar resultados direto para o Windows via SCP (rodar no PC local):
+scp -i "caminho/para/sua-chave.pem" "ec2-user@18.220.23.56:~/TSP-SA-AG/data/{results.txt,system_infos.txt}" ./data/
+
+# Ou abrir servidor HTTP temporário na porta 8000 (liberar porta no Security Group):
+python3 -m http.server 8000 --directory data
+# Acessar no navegador: http://18.220.23.56:8000
+========================================================================
