@@ -8,8 +8,8 @@ main
 build/
 
 # Dados voláteis e resultados de benchmark
-#data/out/
-#data/results*.csv
+data/out/
+data/results*.csv
 
 # Logs e arquivos temporários
 *.log
