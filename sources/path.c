@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 #include "path.h"
 #include "tsp.h"
 #include "error.h"
@@ -8,11 +9,16 @@ PATH *ConstructPath(TSP *tsp) {
     PATH *path = malloc(sizeof(PATH));
     CHECK_ALLOC(path);
 
+    strncpy(path->name, tsp->name, sizeof(path->name) - 1);
+    path->name[sizeof(path->name) - 1] = '\0';  
+
     path->dimension = tsp->dimension;
     path->nodes_index = GenerateRandomPath(path->dimension);
+    path->total_weight = 0;
     
     return path;
 }
+
 
 int* GenerateRandomPath(int dimension) {
     int *nodes_index = malloc(dimension * sizeof(int));
@@ -34,6 +40,7 @@ int* GenerateRandomPath(int dimension) {
 }
 
 void DeconstructPath(PATH *path) {
+    if (!path) return;
     free(path->nodes_index);
     free(path);
 }
@@ -64,4 +71,21 @@ int CalculatePathTotalDist(TSP *tsp, PATH *path) {
     }
 
     return total_dist;
+}
+
+PATH *PathCopy(const PATH *path) {
+    PATH *copy = malloc(sizeof(PATH));
+    CHECK_ALLOC(copy);
+
+    strncpy(copy->name, path->name, sizeof(copy->name) - 1);
+    copy->name[sizeof(path->name) - 1] = '\0';
+
+    copy->dimension = path->dimension;
+    copy->total_weight = path->total_weight;
+    copy->nodes_index = malloc(path->dimension * sizeof(int));
+    CHECK_ALLOC(copy->nodes_index);
+
+    memcpy(copy->nodes_index, path->nodes_index, path->dimension * sizeof(int));
+
+    return copy;
 }
