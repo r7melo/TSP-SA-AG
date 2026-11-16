@@ -6,6 +6,7 @@ PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 cd "$PROJECT_ROOT"
 
 IMAGE_NAME="tsp-benchmark"
+CONTAINER_NAME="tsp-benchmark-run"
 
 echo "=== 1. Atualizando repositório ==="
 git fetch --all
@@ -32,11 +33,16 @@ echo "Informações da máquina salvas em: ${INFO_TXT}"
 echo "=== 3. Construindo imagem Docker ==="
 docker build -t "$IMAGE_NAME" .
 
-echo "=== 4. Executando benchmark no container ==="
-MSYS_NO_PATHCONV=1 docker run --rm \
+echo "=== 4. Removendo execução anterior (se houver) ==="
+docker rm -f "$CONTAINER_NAME" 2>/dev/null || true
+
+echo "=== 5. Executando benchmark no container (em segundo plano) ==="
+docker run -d \
+    --name "$CONTAINER_NAME" \
     -v "${PROJECT_ROOT}/data:/app/data" \
     "$IMAGE_NAME"
 
-echo "=== Concluído com sucesso! ==="
+echo "=== Container iniciado em segundo plano! ==="
 echo "Ficha técnica: ${INFO_TXT}"
-echo "Resultados:    data/results.txt"
+echo "Acompanhe os logs com: docker logs -f ${CONTAINER_NAME}"
+echo "Resultados (ao terminar): data/results.txt"

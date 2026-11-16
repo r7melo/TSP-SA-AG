@@ -44,7 +44,26 @@ cd ~/TSP-SA-AG
 bash scripts/run_ec2.sh
 
 
-5. COMANDOS ÚTEIS PARA VISUALIZAR E BAIXAR OS RESULTADOS
+5. INSTALAR E USAR O DOZZLE (VISUALIZAR LOGS EM TEMPO REAL NO NAVEGADOR)
+------------------------------------------------------------------------
+# Rodar uma única vez (liberar a porta 8080 no Security Group da EC2):
+docker run -d \
+  --name dozzle \
+  -p 8080:8080 \
+  -v /var/run/docker.sock:/var/run/docker.sock:ro \
+  amir20/dozzle:latest
+
+# Acessar no navegador:
+http://<IP_DA_INSTANCIA>:8080
+
+# Parar o Dozzle:
+docker stop dozzle
+
+# Remover o Dozzle (se precisar reinstalar/atualizar depois):
+docker rm -f dozzle
+
+
+6. COMANDOS ÚTEIS PARA VISUALIZAR E BAIXAR OS RESULTADOS
 ------------------------------------------------------------------------
 # Ver especificações da máquina coletadas:
 cat data/system_infos.txt
