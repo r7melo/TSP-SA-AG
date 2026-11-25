@@ -2,23 +2,48 @@
 
 ## Instalar o Compilador
 
+windows
 ```
 winget install -e --id BrechtSanders.WinLibs.POSIX.UCRT
+gcc --version
+```
+
+linux
+```
+sudo apt update
+sudo apt install build-essential
 gcc --version
 ```
 
 ## Compilacao
 
 ```
-gcc main.c sources/*.c -Iheads -lm -o main.exe
+gcc sa.c sources/*.c -Iheads -lm -o sa.exe
+```
+
+```
+gcc ag.c sources/*.c -Iheads -lm -o ag.exe
 ```
 
 ## Execucao
 
+windows
 ```
-.\main.exe < data\in\131.tsp > data\out\131.tsp.tour
+.\sa.exe < data\in\131.tsp > data\out\131.tsp.tour
 ```
 
+```
+.\ag.exe < data\in\131.tsp > data\out\131.tsp.tour
+```
+
+linux
+```
+./sa.exe < data/in/131.tsp > data/out/131.tsp.tour
+```
+
+```
+./ag.exe < data/in/131.tsp > data/out/131.tsp.tour
+```
 
 ## Formato dos dados
 

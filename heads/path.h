@@ -15,3 +15,5 @@ int DistanceBetweenNodes(Node a, Node b);
 int CalculatePathTotalDist(TSP *tsp, PATH *path);
 int* GenerateRandomPath(int dimension);
 PATH *PathCopy(const PATH *path);
+PATH *PathCopyVoid(const PATH *path);
+PATH *PathCopyPartial(const PATH *path, size_t c1, size_t c2);

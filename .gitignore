@@ -9,7 +9,7 @@ build/
 data/system_info*.txt
 
 # Dados voláteis e resultados de benchmark
-data/out/
+data/out/*.*
 data/results*.csv
 
 # Logs e arquivos temporários

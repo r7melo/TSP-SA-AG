@@ -89,3 +89,35 @@ PATH *PathCopy(const PATH *path) {
 
     return copy;
 }
+
+PATH *PathCopyVoid(const PATH *path) {
+    PATH *copy = malloc(sizeof(PATH));
+    CHECK_ALLOC(copy);
+
+    strncpy(copy->name, path->name, sizeof(copy->name) - 1);
+    copy->name[sizeof(path->name) - 1] = '\0';
+
+    copy->dimension = path->dimension;
+    copy->total_weight = 0.0;
+    copy->nodes_index = malloc(path->dimension * sizeof(int));
+    CHECK_ALLOC(copy->nodes_index);
+
+    return copy;
+}
+
+PATH *PathCopyPartial(const PATH *path, size_t c1, size_t c2) {
+    PATH *copy = malloc(sizeof(PATH));
+    CHECK_ALLOC(copy);
+
+    strncpy(copy->name, path->name, sizeof(copy->name) - 1);
+    copy->name[sizeof(copy->name) - 1] = '\0';
+
+    copy->dimension = path->dimension;
+    copy->total_weight = 0.0;
+    copy->nodes_index = malloc(path->dimension * sizeof(int));
+    CHECK_ALLOC(copy->nodes_index);
+
+    memcpy(copy->nodes_index + c1, path->nodes_index + c1, (c2 - c1) * sizeof(int));
+
+    return copy;
+}
