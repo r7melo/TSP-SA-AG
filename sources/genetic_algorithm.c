@@ -7,15 +7,14 @@
 #define FALSE 0
 #define TRUE 1
 
-PATH *MutationInsert(const PATH *path) {
+PATH *MutationInsert(PATH *path) {
     size_t n = path->dimension;
 
     size_t curr_pos = rand() % n;
     size_t new_pos = rand() % (n - 1);
     if (new_pos >= curr_pos) new_pos++;
 
-    PATH *path_copy = PathCopy(path);
-    int *nodes = path_copy->nodes_index;
+    int *nodes = path->nodes_index;
 
     size_t start, end;
     int shift;
@@ -38,10 +37,10 @@ PATH *MutationInsert(const PATH *path) {
     memmove(nodes + dst_offset, nodes + src_offset, (end - start) * sizeof(int));
     nodes[new_pos] = moved;
 
-    return path_copy;
+    return path;
 }
 
-PATH *MutationSwap(const PATH *path) {
+PATH *MutationSwap(PATH *path) {
     size_t n = path->dimension;
 
     // Sorteia i e j garantindo i != j
@@ -49,16 +48,14 @@ PATH *MutationSwap(const PATH *path) {
     size_t j = rand() % (n - 1);
     if (j >= i) j++;
 
-    PATH *path_copy = PathCopy(path);
+    int temp = path->nodes_index[i];
+    path->nodes_index[i] = path->nodes_index[j];
+    path->nodes_index[j] = temp;
 
-    int temp = path_copy->nodes_index[i];
-    path_copy->nodes_index[i] = path_copy->nodes_index[j];
-    path_copy->nodes_index[j] = temp;
-
-    return path_copy;
+    return path;
 }
 
-PATH *MutationRandom(const PATH *path) {
+PATH *MutationRandom(PATH *path) {
     if (rand() % 2 == 0) {
         return MutationInsert(path);
     } else {
@@ -125,32 +122,3 @@ PATH *CrossoverGNX(const PATH *parent1, const PATH *parent2){
     return child;
 }
 
-
-PATH *GeneticAlgotithm(
-    TSP *tsp, 
-    const PATH *initial_path,
-    float cut1,
-    float cut2
-) {
-    tsp->dimension = 8;
-
-    PATH *parent1 = ConstructPath(tsp);
-    PATH *parent2 = ConstructPath(tsp);
-
-    for (size_t i = 0; i < 8; i++)
-    {
-        parent1->nodes_index[i] = i + 1;
-        parent2->nodes_index[i] = 8 - i;
-    }
-
-    
-
-    PATH *child = CrossoverOX(parent1, parent2, cut1, cut2);
-    
-    for (size_t i = 0; i < 8; i++)
-    {
-        PrintLog("[%d][%d]\t[%d]\n", parent1->nodes_index[i], parent2->nodes_index[i], child->nodes_index[i] );
-    }
-
-    return child;
-}

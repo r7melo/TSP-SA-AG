@@ -14,7 +14,7 @@ PATH *ConstructPath(TSP *tsp) {
 
     path->dimension = tsp->dimension;
     path->nodes_index = GenerateRandomPath(path->dimension);
-    path->total_weight = 0;
+    path->total_weight = CalculatePathTotalDist(tsp, path);
     
     return path;
 }

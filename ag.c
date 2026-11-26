@@ -8,8 +8,11 @@
 #include "logger.h"
 #include <string.h>
 
-#define AG_CUT1 0.4
-#define AG_CUT2 0.8
+#define POPULATION_SIZE     200
+#define EPOCHS              3000
+#define AG_CUT1             0.4
+#define AG_CUT2             0.8
+
 
 
 static int ParseLogFlag(int argc, char *argv[]) {
@@ -33,6 +36,8 @@ int main(int argc, char *argv[]) {
     PATH *best_path = GeneticAlgotithm(
         tsp,
         path,
+        POPULATION_SIZE,
+        EPOCHS,
         AG_CUT1,
         AG_CUT2
     );
